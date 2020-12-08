@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/7
+
 (function() {
 
 let input = document.body.textContent;

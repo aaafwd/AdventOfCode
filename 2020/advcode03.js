@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/3
+
 (function() {
 
 let map = document.body.textContent.trim().split('\n');

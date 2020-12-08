@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/2
+
 (function() {
 
 let lines = document.body.textContent.trim().split('\n');

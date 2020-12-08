@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/1
+
 (function() {
 
 let numbers = document.body.textContent.trim().split('\n');

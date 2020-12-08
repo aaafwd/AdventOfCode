@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/6
+
 (function() {
 
 let input = document.body.textContent.trim().split('\n\n');

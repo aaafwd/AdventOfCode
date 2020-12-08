@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/5
+
 (function() {
 
 let seats = document.body.textContent.trim().split('\n').map(s => {
