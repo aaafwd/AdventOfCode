@@ -6,7 +6,7 @@
 
 (function() {
 
-function makeSpinlock(last_value, step_count, optimise = !true) {
+function makeSpinlock(last_value, step_count, optimise = true) {
   let next = new Int32Array(last_value + 1);
   next[0] = 0;
 
