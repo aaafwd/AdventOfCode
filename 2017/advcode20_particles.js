@@ -83,24 +83,17 @@ function resolveAllCollides(particles) {
   }
   collide_events.sort((a, b) => a.time - b.time);
 
-  let collided = Array(particles.length).fill(0);
-  let current_time = -1;
+  let collided_times = Array(particles.length).fill(Infinity);
   for (let {time, i, j} of collide_events) {
-    if (current_time == time) {
-      collided[i] = collided[j] = 1;
-    } else {
-      current_time = time;
-      if (!collided[i] && !collided[j]) {
-        collided[i] = collided[j] = 1;
-      }
-    }
+    if (collided_times[i] < time || collided_times[j] < time) continue;
+    collided_times[i] = collided_times[j] = time;
   }
 
-  let left = particles.length - collided.reduce((x, y) => x + y);
+  let left = collided_times.filter(t => t == Infinity).length;
   return left;
 }
 
-function solve(input) {
+function parseInput(input) {
   let lines = input.trim().split('\n');
   const regex = /[pva]\s*=\s*<\s*([-\d]+)\s*,\s*([-\d]+)\s*,\s*([-\d]+)\s*>/g;
 
@@ -109,10 +102,13 @@ function solve(input) {
     let result = [...line.matchAll(regex)];
     particles.push(result.map(res => [res[1], res[2], res[3]].map(x => +x)));
   }
+  return particles;
+}
 
+function solve(input) {
+  let particles = parseInput(input);
   let answer1 = findClosestToZero(particles);
   let answer2 = resolveAllCollides(particles);
-
   console.log("Answer 1:", answer1, "Answer 2:", answer2);
 }
 
@@ -131,4 +127,3 @@ p=< 3,0,0>, v=<-1,0,0>, a=< 0,0,0>
 solve(document.body.textContent);
 
 })();
-
