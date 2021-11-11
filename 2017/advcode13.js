@@ -7,6 +7,7 @@ function nextCaughtPosition(firewall, depth, delay = 0) {
   for (; depth < firewall.length; ++depth) {
     let range = firewall[depth];
     if (!range) continue;
+    if (range == 1) break;
     let pos = (delay + depth) % (2 * range - 2);
     if (pos == 0) break;
   }
