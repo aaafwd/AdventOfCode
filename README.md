@@ -1,5 +1,5 @@
 # AdventOfCode
-Solutions to [Advent of Code](https://adventofcode.com/) puzzles.
+Solutions to [Advent of Code](https://adventofcode.com/) puzzles
 
 ## How to run a solution
 
