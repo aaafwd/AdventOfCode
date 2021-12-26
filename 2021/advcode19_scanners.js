@@ -6,10 +6,6 @@
 (function() {
 console.time('Runtime');
 
-function vec3mult([x, y, z], k) {
-  return [x * k, y * k, z * k];
-}
-
 const kBases = (function() {
   let result = [];
   let axes = [
@@ -17,14 +13,22 @@ const kBases = (function() {
     [0, 1, 0],
     [0, 0, 1]
   ];
+
+  function negate(vec) {
+    for (let i = 0; i < 3; ++i) {
+      if (vec[i]) vec[i] *= -1;
+    }
+  }
+
   for (let face = 0; face < 3; ++face) {
     for (let sign = -1; sign <= 1; sign += 2) {
       for (let rot = 0; rot < 4; ++rot) {
         result.push(axes.map(axe => [...axe]));
-        [axes[1], axes[2]] = [axes[2], vec3mult(axes[1], -1)];
+        [axes[1], axes[2]] = [axes[2], axes[1]];
+        negate(axes[2]);
       }
-      axes[0] = vec3mult(axes[0], -1);
-      axes[1] = vec3mult(axes[1], -1);
+      negate(axes[0]);
+      negate(axes[1]);
     }
     axes.push(axes.shift());
   }
@@ -46,7 +50,7 @@ function parseInput(input) {
 }
 
 function cacheKey([x, y, z]) {
-  return (x * 2048 + y) * 2048 + z;
+  return (x * 8192 + y) * 8192 + z;
 }
 
 function findOffsetForOverlaps(points1, points2) {
