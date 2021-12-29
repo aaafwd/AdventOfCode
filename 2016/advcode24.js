@@ -1,7 +1,7 @@
 // https://adventofcode.com/2016/day/24
 // --- Day 24: Air Duct Spelunking ---
 //
-// Runtime: 200 ms
+// Runtime: 164.361083984375 ms
 
 (function() {
 console.time('Runtime');
@@ -34,8 +34,9 @@ function bfs(map) {
   }
 
   let queue = [[start_x, start_y, 0]];
-  let cache = {};
-  cache[getState(start_x, start_y, 0)] = 1
+  let seen = new Set();
+  seen.add(getState(start_x, start_y, 0));
+
   let final_state = getState(start_x, start_y, final_mask);
   let collect_all_steps = -1;
 
@@ -61,8 +62,8 @@ function bfs(map) {
         if (state == final_state) {
           return [collect_all_steps, steps];
         }
-        if (cache[state]) continue;
-        cache[state] = 1;
+        if (seen.has(state)) continue;
+        seen.add(state);
         new_queue.push([nx, ny, nmask]);
       }
     }
