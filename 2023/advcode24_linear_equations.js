@@ -25,12 +25,6 @@ function determinant2D(a, b, c, d) {
   return a * d - b * c;
 }
 
-function isParallel2D(line1, line2) {
-  let [a1, b1, c1] = getLineCoeff2D(line1);
-  let [a2, b2, c2] = getLineCoeff2D(line2);
-  return determinant2D(a1, b1, a2, b2) == 0;
-}
-
 function intersects2D(line1, line2) {
   let [a1, b1, c1] = getLineCoeff2D(line1);
   let [a2, b2, c2] = getLineCoeff2D(line2);
@@ -91,13 +85,13 @@ function solveLinearEquationsSystem(equations) {
     }
     if (equations[i][i] == 0) return null; // No solution.
 
-    // Multiply each equation below by `-equations[i][i]` and
-    // add the `equations[i]` multiplied by `equations[j][i]`.
+    // Multiply each equation below by `equations[i][i]` and
+    // substract the `equations[i]` multiplied by `equations[j][i]`.
     for (let j = i + 1; j < equations.length; ++j) {
       if (equations[j][i] == 0) continue;
       for (let k = i + 1; k <= N; ++k) {
-        equations[j][k] *= -equations[i][i];
-        equations[j][k] += equations[i][k] * equations[j][i];
+        equations[j][k] *= equations[i][i];
+        equations[j][k] -= equations[i][k] * equations[j][i];
       }
       // Assigning to zero and making it work for BigInt.
       equations[j][i] -= equations[j][i];
@@ -193,4 +187,3 @@ solve(`
 solve(document.body.textContent, 200000000000000, 400000000000000);
 
 })();
-
