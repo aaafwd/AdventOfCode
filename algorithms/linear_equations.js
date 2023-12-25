@@ -22,13 +22,13 @@ function solveLinearEquationsSystem(equations) {
     }
     if (equations[i][i] == 0) return null; // No solution.
 
-    // Multiply each equation below by `-equations[i][i]` and
-    // add the `equations[i]` multiplied by `equations[j][i]`.
+    // Multiply each equation below by `equations[i][i]` and
+    // substract the `equations[i]` multiplied by `equations[j][i]`.
     for (let j = i + 1; j < equations.length; ++j) {
       if (equations[j][i] == 0) continue;
       for (let k = i + 1; k <= N; ++k) {
-        equations[j][k] *= -equations[i][i];
-        equations[j][k] += equations[i][k] * equations[j][i];
+        equations[j][k] *= equations[i][i];
+        equations[j][k] -= equations[i][k] * equations[j][i];
       }
       // Assigning to zero and making it work for BigInt.
       equations[j][i] -= equations[j][i];
@@ -58,4 +58,3 @@ function solveLinearEquationsSystem(equations) {
 
   return answers;
 }
-
