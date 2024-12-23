@@ -3,7 +3,7 @@ const kDirs = [[0, -1], [1, 0], [0, 1], [-1, 0]];
 
 function mapsNew(X, Y) { return Array(Y).fill(0).map(row => Array(X).fill('.')); }
 function mapsFromString(str) { return str.trim().split('\n').map(row => row.trim().split('')); }
-function mapsClone(map) { return map.slice().map(row => row.slice()); }
+function mapsClone(map) { return map.map(row => row.slice()); }
 function mapsToString(map) { return map.map(row => row.join('')).join('\n'); }
 function mapsPrint(map) { console.log(mapsToString(map)); }
 function mapsInRange(map, x, y) { return 0 <= y && y < map.length && 0 <= x && x < map[y].length; }
