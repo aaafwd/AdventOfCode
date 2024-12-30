@@ -1,4 +1,4 @@
-[200~// https://adventofcode.com/2024/day/21
+// https://adventofcode.com/2024/day/21
 // --- Day 21: Keypad Conundrum ---
 // Runtime: 6.126953125 ms
 
