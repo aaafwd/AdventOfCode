@@ -18,7 +18,7 @@ function mapsFindChar(map, ch) {
   console.assert(false, map, ch);
 }
 
-const numbericKeypad = [
+const numericKeypad = [
   "789",
   "456",
   "123",
@@ -30,7 +30,7 @@ const directionalKeypad = [
 ];
 
 function generateOnKeypadPaths(src, dst, isNumeric) {
-  let map = isNumeric ? numbericKeypad : directionalKeypad;
+  let map = isNumeric ? numericKeypad : directionalKeypad;
   let [ex, ey] = mapsFindChar(map, dst);
   let generated = [];
   let current = [];
