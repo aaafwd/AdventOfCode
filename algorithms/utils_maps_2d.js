@@ -29,6 +29,17 @@ function mapsDirFromChar(ch) {
   return kDirs[i];
 }
 
+function mapsFlipXY(map) {
+  let Y = map.length, X = map[0].length;
+  let flipped = Array(X).fill(0).map(row => Array(Y));
+  for (let y = 0; y < map.length; ++y) {
+    for (let x = 0; x < map[y].length; ++x) {
+      flipped[x][y] = map[y][x];
+    }
+  }
+  return flipped;
+}
+
 // Example usage.
 function mapsIterateDirs(map, x, y) {
   for (let [dx, dy] of kDirs) {
