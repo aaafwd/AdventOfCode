@@ -1,6 +1,6 @@
 // https://adventofcode.com/2024/day/23
 // --- Day 23: LAN Party ---
-// Runtime: 55.551025390625 ms
+// Runtime: 36.18701171875 ms
 
 (function() {
 console.time('Runtime');
@@ -45,22 +45,19 @@ function findMaxClique(graph) {
   let nodes = Array.from(graph.keys());
 
   let currentClique = [];
-  function runFind(candidates, visited) {
+  function runFind(candidates) {
     if (maxClique < currentClique.length) {
       maxClique = currentClique.length;
       maxCliqueNodes = currentClique.slice();
     }
 
-    candidates = candidates
-      .filter(node => !visited.has(node) && canIncreaseCurrentClique(node));
-    if (candidates.length == 0) return;    
+    candidates = candidates.filter(canIncreaseCurrentClique);
+    if (candidates.length == 0) return;
     if (maxClique >= currentClique.length + candidates.length) return;
 
-    visited = new Set();
-    for (let node of candidates) {
-      visited.add(node);
-      currentClique.push(node);
-      runFind(candidates, visited);
+    while (candidates.length > 0) {
+      currentClique.push(candidates.pop());
+      runFind(candidates);
       currentClique.pop();
     }
   }
@@ -125,4 +122,3 @@ solve(document.body.textContent);
 
 console.timeEnd('Runtime');
 })();
-
