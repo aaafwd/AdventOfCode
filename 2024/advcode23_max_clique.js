@@ -68,7 +68,7 @@ function findMaxClique(graph) {
     return currentClique.every(n => adjacentNodes.has(n));
   }
 
-  runFind(nodes, new Set());
+  runFind(nodes);
   return maxCliqueNodes.sort().join(',');
 }
 
